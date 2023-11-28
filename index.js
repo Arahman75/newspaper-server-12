@@ -30,12 +30,18 @@ async function run() {
 
         const articlesCollection = client.db("newspaperDb").collection('articles');
 
+        // get articlesCollection
         app.get('/articles', async (req, res) => {
             const result = await articlesCollection.find().toArray();
             res.send(result);
         })
 
-
+        // post articlesCollection
+        app.post('/articles', async (req, res) => {
+            const cartItem = req.body;
+            const result = await articlesCollection.insertOne(cartItem);
+            res.send(result);
+        })
 
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
