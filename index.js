@@ -5,9 +5,6 @@ require('dotenv').config();
 const cors = require('cors');
 const port = process.env.PORT || 5000;
 
-// dbuser : newspaperDb
-// dbpassword: 9mexfGh6HSP1vtM9
-
 // middleware
 app.use(cors());
 app.use(express.json());
@@ -37,6 +34,8 @@ async function run() {
             const result = await articlesCollection.find().toArray();
             res.send(result);
         })
+
+
 
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
